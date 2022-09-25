@@ -77,7 +77,7 @@ locs = get_me_the_fuck_locations(access_token)
 productid = get_me_the_fuck_cheap(locs,access_token,'chocolate','Kroger')
 
 
-@app.get('/kroger')
+@application.get('/kroger')
 def list_of_items():
    item = request.args.get('item')
    productid = get_me_the_fuck_cheap(locs,access_token,item,'Kroger')

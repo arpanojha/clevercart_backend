@@ -1,5 +1,5 @@
 from flask import Flask, request
-app = Flask(__name__)
+application = Flask(__name__)
 
 in_memory_datastore = {
    "COBOL": {"name": "COBOL", "publication_year": 1960, "contribution": "record data"},
@@ -15,9 +15,9 @@ in_memory_datastore = {
            "contribution": "iterators, abstract data types, generics, checked exceptions"},
 }
 
-@app.route('/')
+@application.route('/')
 def hello_world():
     return "Fuck off"
-@app.route('/programming_languages/<programming_language_name>')
+@application.route('/programming_languages/<programming_language_name>')
 def get_programming_language(programming_language_name):
    return in_memory_datastore[programming_language_name]

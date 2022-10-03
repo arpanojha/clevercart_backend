@@ -119,11 +119,11 @@ def return_ac_result(item):
     word = 'pot'
     if item !=None:
         word=item
-    return_searches = {'values':[]}
+    return_searches = []
     try:
         res = autocomplete.search(word, max_cost=10, size=5)
         for i in res:
-            return_searches['values'].append(i[0])
+            return_searches.append({'values':i[0]})
     except:
-        return_searches['values']=None
+        return_searches.append({'values':None})
     return return_searches

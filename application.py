@@ -83,3 +83,47 @@ def list_of_items(item):
    productid = get_me_the_fuck_cheap(locs,access_token,item,'Kroger')
    return_value = fuckin_cheap_value(productid,access_token,locs[0])
    return {"programming_languages":list(return_value.values())}
+
+
+from fast_autocomplete import AutoComplete
+# words = {'book': {}, 'burrito': {}, 'pizza': {}, 'pasta':{}}
+# autocomplete = AutoComplete(words=words)
+# print(autocomplete.search(word='b', max_cost=3, size=3))
+
+import csv
+from fast_autocomplete.misc import read_csv_gen
+
+
+def get_words(path):
+
+    csv_gen = read_csv_gen(path, csv_func=csv.DictReader)
+
+    words = {}
+
+    for line in csv_gen:
+        make = line['name']
+        model = line['brand']
+        if make != model:
+            local_words = [model, '{} {}'.format(make, model)]
+            while local_words:
+                word = local_words.pop()
+                if word not in words:
+                    words[word] = {}
+        if make not in words:
+            words[make] = {}
+    return words
+words = get_words('Grocery_UPC_Database.csv')
+autocomplete = AutoComplete(words=words)
+@application.route('/auto_complete/<item>')
+def return_ac_result(item):
+    word = 'pot'
+    if item !=None:
+        word=item
+    return_searches = {'values':[]}
+    try:
+        res = autocomplete.search(word, max_cost=10, size=5)
+        for i in res:
+            return_searches['values'].append(i[0])
+    except:
+        return_searches['values']=None
+    return return_searches

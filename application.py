@@ -85,9 +85,7 @@ def list_of_items(item):
 
 
 from fast_autocomplete import AutoComplete
-# words = {'book': {}, 'burrito': {}, 'pizza': {}, 'pasta':{}}
-# autocomplete = AutoComplete(words=words)
-# print(autocomplete.search(word='b', max_cost=3, size=3))
+
 
 import csv
 from fast_autocomplete.misc import read_csv_gen

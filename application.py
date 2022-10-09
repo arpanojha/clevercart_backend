@@ -122,8 +122,10 @@ def return_ac_result(item):
     return_searches = []
     try:
         res = autocomplete.search(word, max_cost=10, size=5)
+        counter = 1
         for i in res:
-            return_searches.append({'values':i[0]})
+            return_searches.append({'id':counter,'values':i[0]})
+            counter+=1
     except:
-        return_searches.append({'values':None})
+        return_searches.append({id:'1','values':None})
     return return_searches

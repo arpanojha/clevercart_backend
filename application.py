@@ -79,7 +79,6 @@ productid = get_me_the_fuck_cheap(locs,access_token,'chocolate','Kroger')
 
 @application.get('/kroger/<item>')
 def list_of_items(item):
-   #item = request.args.get('item')
    productid = get_me_the_fuck_cheap(locs,access_token,item,'Kroger')
    return_value = fuckin_cheap_value(productid,access_token,locs[0])
    return {"programming_languages":list(return_value.values())}
